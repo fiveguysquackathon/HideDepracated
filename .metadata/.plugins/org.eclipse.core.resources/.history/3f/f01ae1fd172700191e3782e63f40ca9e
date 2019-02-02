@@ -1,5 +1,0 @@
-
-public class RGBAToText {
-	String[] rgbArray = {"255","255","255","1","255","255","255","1"};
-	String[] privateKey;
-}
