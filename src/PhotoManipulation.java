@@ -9,9 +9,16 @@ public class PhotoManipulation {
 	File input = null;
 	File output = null;
 
+	public void keyController(String Key, int[] nums) {
+		openFile();
+		encodeCoord(Key);
+		encodeKey(nums);
+		writeToFile();
+	}
+
 	public void openFile() {
 		try {
-			input = new File("../media/blank.png");
+			input = new File("./media/Untitled.png");
 			img = ImageIO.read(input);
 		} catch (IOException e) {
 			System.out.println(e);
@@ -21,7 +28,7 @@ public class PhotoManipulation {
 
 	public void writeToFile() {
 		try {
-			output = new File("../media/image2.png");
+			output = new File("./media/image2.png");
 			ImageIO.write(img, "png", output);
 		} catch (IOException t) {
 			System.out.println(t);
@@ -43,11 +50,64 @@ public class PhotoManipulation {
 		return rgb;
 	}
 
+	public int RGBSeparate(int RGB, int type) {
+		Color tempColor = new Color(RGB);
+		int output = 0;
+
+		switch (type) {
+		case 0:
+			output = tempColor.getRed();
+		case 1:
+			output = tempColor.getGreen();
+		case 2:
+			output = tempColor.getBlue();
+		}
+
+		return output;
+	}
+
+	public int[][] returnText(int[] encoded) {
+		int[][] temp = null;
+		for (int i = 0; i < encoded.length; i++) {
+			temp[i][0] = RGBSeparate(encoded[i], 0);
+			temp[i][1] = RGBSeparate(encoded[i], 1);
+			temp[i][2] = RGBSeparate(encoded[i], 2);
+
+		}
+		return null;
+
+	}
+
 	public void changePixel(int rgb, int x, int y) {
 		img.setRGB(x, y, rgb);
 	}
 
+	public void printVals() {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				System.out.print(getPixel(j, i) + " ");
+			}
+			System.out.println("");
+		}
+	}
+	public void encodeCoord(String Key) {
+		String[] splitKey = Key.split(",");
+
+		for (int i = 0; i < splitKey.length; i++) {
+			changePixel(Integer.parseInt(splitKey[i]), i, 0);
+		}
+	}
+	public void encodeKey(int[] Key) {
+		
+
+		for (int j = 0; j < Key.length; j++) {
+			changePixel(Key[j], j, img.getHeight() - 1);
+		}
+
+	}
+
 	public int getPixel(int x, int y) {
+
 		return img.getRGB(x, y);
 
 	}
@@ -59,16 +119,16 @@ public class PhotoManipulation {
 		int length = input.length;
 		System.out.println(height + " " + width + " " + length);
 
-		for (int i = 0; i < height - 1; i++) {
+		for (int i = 0; i < height; i++) {
 
-			for (int j = 0; i < width - 1; j++) {
+			for (int j = 0; j < width; j++) {
 
 				if (counter < length) {
 					changePixel(input[counter], j, i);
 					writeToFile();
 					counter++;
 				} else {
-					changePixel(150, j, i);
+					changePixel(-000000000, j, i);
 				}
 				System.out.println(i + " " + j);
 			}

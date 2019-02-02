@@ -4,18 +4,36 @@ import java.awt.Color;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class TextToRGBA {
-	String cipherText = "Xb372sSg4";
+	String cipherText, key;
+	
+	public int[] getTextRGB(String[] encryptionArray) {
+		cipherText = encryptionArray[0];
+		char[] characterArray = splitText();
+		int[] intArray = convertTextToInt(characterArray);
+		int[] textRGBArray = genAllText(intArray);
+		return textRGBArray;
+	}
+	
+	public int[] getKeyRGB(String[] encryptionArray) {
+		key = encryptionArray[1];
+		String[] keyArray = key.split(",");
+		// Convert keyArray to IntArray
+		int[] intArray = convertKeyToInt(keyArray);
+		// Generates pixels
+		int[] keyRGBArray = genAllKey(intArray);
+		return keyRGBArray;
+	}
 	
 	/** Splits the private key into an array of characters */
-	public char[] splitKey() {
+	public char[] splitText() {
 		int size = cipherText.length();
 		char[] characterArray = new char[size]; 
 		characterArray = cipherText.toCharArray();
 		return characterArray;
 	}
 	
-	/** Converts characters into integer array */
-	public int[] convertInt(char[] characterArray) {
+	/** Converts text characters into integer array */
+	public int[] convertTextToInt(char[] characterArray) {
 		int size = characterArray.length;
 		int[] intArray = new int[size];
 		for (int i=0;i<size;i++) {
@@ -52,7 +70,7 @@ public class TextToRGBA {
 		return onePixelArray;
 	}
 	
-	public int[] genAll(int[] intArray) {
+	public int[] genAllText(int[] intArray) {
 		int size = intArray.length;
 		int[] pixelArray = new int[0];
 		for (int i=0;i<size;i++) {
@@ -61,5 +79,34 @@ public class TextToRGBA {
 			pixelArray = ArrayUtils.addAll(pixelArray,rgb);
 		}
 		return pixelArray;
+	}
+	
+	/** Converts key string array into integer array */
+	public int[] convertKeyToInt(String[] stringArray) {
+		int size = stringArray.length;
+		int[] intArray = new int[size];
+		for (int i=0;i<size;i++) {
+			intArray[i] = Integer.parseInt(stringArray[i]);
+		}
+		return intArray;
+	}
+	
+	/** Generates all the pixels based on  */
+	public int[] genAllKey(int[] intArray){
+		// Creates blank array for pixels
+		int[] exportArray = new int[0];
+		// Gets size of the array
+		int size = intArray.length;
+		// Goes through each integer
+		for (int i=0;i<size;i++) {
+			int currentInt = intArray[i];
+			// Turns -127 to 127 into 1 to 255
+			int optimizedInt = currentInt + 128;
+			// Generates appropriate values for pixel
+			int[] onePixelArray = genPixel(optimizedInt);
+			// Adds pixel to the main array
+			exportArray = ArrayUtils.addAll(exportArray,onePixelArray);
+		}
+		return exportArray;
 	}
 }
