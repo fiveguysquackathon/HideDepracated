@@ -30,7 +30,8 @@ public class Menu {
             }
             
             // Allows the user to input validation
-            Scanner scanner = new Scanner(System.in);
+            @SuppressWarnings("resource")
+			Scanner scanner = new Scanner(System.in);
 
         System.out.println("Please enter the password to begin the program:");
 
@@ -38,11 +39,9 @@ public class Menu {
         int password = input.hashCode();
         System.err.println(textInput + " " + password);
         if (Integer.parseInt(textInput) == password) {
-            scanner.close();
             return true;
         } else {
 
-        scanner.close();
         }
 
         } catch(FileNotFoundException e) {
