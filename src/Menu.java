@@ -41,13 +41,15 @@ public class Menu {
             return true;
         }
 
+        scanner.close();
+
         } catch(FileNotFoundException e) {
 
         } catch(IOException e) {
             System.out.println("There was not a valid password found. Call 0124710240 for Tech Support!");
         }
 
-        scanner.close();
+        
 
         return false;
 
