@@ -38,10 +38,12 @@ public class Menu {
         int password = input.hashCode();
         System.err.println(textInput + " " + password);
         if (Integer.parseInt(textInput) == password) {
+            scanner.close();
             return true;
-        }
+        } else {
 
         scanner.close();
+        }
 
         } catch(FileNotFoundException e) {
 
