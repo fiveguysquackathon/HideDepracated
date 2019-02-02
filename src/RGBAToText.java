@@ -17,7 +17,7 @@ public class RGBAToText {
 //		  {"255","255","255","1"},
 //		};
 		
-	public String getText(String[][] textRGB) {
+	public String[] getText(String[][] textRGB) {
 		int size = textRGB.length;
 		String[] textArray = new String[0];
 		
@@ -29,11 +29,11 @@ public class RGBAToText {
 			textArray = ArrayUtils.addAll(textArray, characterStr);
 		}
 		
-		String text = String.join("", textArray);
-		return text;
+		//String text = String.join("", textArray);
+		return textArray;
 	}
 	
-	public String getKey(String[][] keyRGB) {
+	public String[] getKey(String[][] keyRGB) {
 		int size = keyRGB.length;
 		String[] keyArray = new String[0];
 		
@@ -45,7 +45,7 @@ public class RGBAToText {
 			String characterStr = String.valueOf(character);
 			keyArray = ArrayUtils.addAll(keyArray, characterStr);
 		}
-		String key = String.join(",", keyArray);
-		return key;
+		//String key = String.join(",", keyArray);
+		return keyArray;
 	}
 }
