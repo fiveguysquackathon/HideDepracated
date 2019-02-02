@@ -59,16 +59,16 @@ public class PhotoManipulation {
 		int length = input.length;
 		System.out.println(height + " " + width + " " + length);
 
-		for (int i = 0; i < height - 1; i++) {
+		for (int i = 0; i < height; i++) {
 
-			for (int j = 0; i < width - 1; j++) {
+			for (int j = 0; j < width; j++) {
 
 				if (counter < length) {
 					changePixel(input[counter], j, i);
 					writeToFile();
 					counter++;
 				} else {
-					changePixel(150, j, i);
+					changePixel(-000000000, j, i);
 				}
 				System.out.println(i + " " + j);
 			}
