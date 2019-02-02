@@ -41,10 +41,10 @@ public class ImageEncrypting {
         try
         { 
             // Output file path 
-            File output_file = new File("./media/2.jpg"); 
+            File output_file = new File("./media/2.png"); 
   
             // Writing to file taking type and path as 
-            ImageIO.write(image, "jpg", output_file); 
+            ImageIO.write(image, "png", output_file); 
   
             System.out.println("Writing complete."); 
         } 
@@ -109,14 +109,6 @@ public class ImageEncrypting {
 					}
 				}
 				
-				System.out.println("\n");
-				System.out.println(image.getRGB(x[0], y[0]-1));
-				System.out.println(x[0] + "  " + (y[0]-1));
-				System.out.println(image.getRGB(x[0]+1, y[0]));
-				System.out.println((x[0]+1) + "  " + y[0]);
-
-				System.out.println("\n");
-
 				
 				// NOT full random pixels
 				
@@ -147,8 +139,25 @@ public class ImageEncrypting {
 		
 		key = key + length/4 + "," + length%4;
 		
-		System.out.println(key);
+		System.out.println(key+"\n");
 		
+	}
+	
+	//---------------------------------------------------------------------------------------------------------------------//
+	
+	public void printVals(BufferedImage image) {
+		for (int i = 0; i < image.getHeight(); i++) {
+			for (int j = 0; j < image.getWidth(); j++) {
+				System.out.print(getPixel(j, i, image) + " ");
+			}
+			System.out.println("");
+		}
+	}
+	
+	public int getPixel(int x, int y,  BufferedImage image) {
+
+		return image.getRGB(x, y);
+
 	}
 	
 	
