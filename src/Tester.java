@@ -7,13 +7,18 @@ public class Tester {
 	}
 	
 	public void maxTests() {
-		String[] encryptionArray = {"7Xtej373v","-35,46,21,74,-32,53,-2"};
-		TextToRGBA textToRGBAObj = new TextToRGBA();
-		int[] keyRGBArray = textToRGBAObj.getKeyRGB(encryptionArray);
-		
-		for (int i=0;i<keyRGBArray.length;i++) {
-			System.out.printf(keyRGBArray[i] + ",");
-		}
+//		String[] encryptionArray = {" ","-35,46,21,74,-32,53,-2"};
+//		TextToRGBA textToRGBAObj = new TextToRGBA();
+//		int[] keyRGBArray = textToRGBAObj.getTextRGB(encryptionArray);
+//		
+//		for (int i=0;i<keyRGBArray.length;i++) {
+//			System.out.printf(keyRGBArray[i] + ",");
+//		}
+		RGBAToText rgbToTextObj = new RGBAToText();
+		String text = rgbToTextObj.getText();
+		String key = rgbToTextObj.getKey();
+		System.out.println(text);
+		System.out.println(key);
 	}
 
 }
