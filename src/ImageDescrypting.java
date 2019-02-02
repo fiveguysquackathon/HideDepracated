@@ -9,15 +9,15 @@ public class ImageDescrypting {
 	
 	public static BufferedImage imageDescryptRead() throws IOException  {
 	        
-	        BufferedImage image = null;
+	        BufferedImage imagex = null;
 	        
 	        try
 	        { 
 	        	
-	            File input_file = new File("./media/2.jpg"); //image file path 
+	            File input_file = new File("./media/2.png"); //image file path 
 	  
 	             // Reading input file 
-	            image = ImageIO.read(input_file); 
+	            imagex = ImageIO.read(input_file); 
 	  
 	            System.out.println("Reading complete."); 
 	        } 
@@ -27,7 +27,7 @@ public class ImageDescrypting {
 	            System.out.println("Error: " + e); 
 	        } 
 	        
-	        return image;
+	        return imagex;
 	        
 	        
 		}
@@ -73,13 +73,7 @@ public class ImageDescrypting {
 			counter=counter+2;
 		}
 		
-		System.out.print("\n");
-		System.out.println("\nCoordinates");
-		for (int i=0; i<randomPixels;i++) {
-			System.out.println("x: " + x[i] + " ");
-			System.out.println("y: " + y[i] + " ");
-
-		}
+		
 		
 		//-------------------------------------------------------------------------//
 
@@ -89,12 +83,6 @@ public class ImageDescrypting {
 		int[] pixels = new int[pixelsQ];
 		
 		// decryptes the pixels  
-		
-		
-		
-		System.out.println("\n");
-		System.out.println(x[0] + "  " + (y[0]-1));
-		System.out.println(imagex.getRGB(x[0], y[0]-1));
 		
 		
 		
@@ -110,11 +98,6 @@ public class ImageDescrypting {
 				
 				
 				// NOT full random pixels
-				System.out.println("\n");
-
-				System.out.println("\npixels:" + pixelsQ);
-				System.out.println("count:" + count);
-				System.out.println("\n");
 
 				if (NOTfullRandom!=0) {
 					if (NOTfullRandom==1) {
@@ -132,7 +115,7 @@ public class ImageDescrypting {
 				}
 				
 				for (int i=0;i<pixels.length;i++) {
-					System.out.println(pixels[i]);
+					System.out.print(pixels[i] + "  ");
 				}
 				
 				return pixels;
