@@ -10,15 +10,18 @@ public class TextToRGBA {
 		cipherText = encryptionArray[0];
 		char[] characterArray = splitText();
 		int[] intArray = convertTextToInt(characterArray);
-		int[] textRGBArray = genAll(intArray);
+		int[] textRGBArray = genAllText(intArray);
 		return textRGBArray;
 	}
 	
-	public void getKeyRGB(String[] encryptionArray) {
+	public int[] getKeyRGB(String[] encryptionArray) {
 		key = encryptionArray[1];
 		String[] keyArray = key.split(",");
 		// Convert keyArray to IntArray
-		convertKeyToInt(keyArray);
+		int[] intArray = convertKeyToInt(keyArray);
+		// Generates pixels
+		int[] keyRGBArray = genAllKey(intArray);
+		return keyRGBArray;
 	}
 	
 	/** Splits the private key into an array of characters */
@@ -67,7 +70,7 @@ public class TextToRGBA {
 		return onePixelArray;
 	}
 	
-	public int[] genAll(int[] intArray) {
+	public int[] genAllText(int[] intArray) {
 		int size = intArray.length;
 		int[] pixelArray = new int[0];
 		for (int i=0;i<size;i++) {
@@ -88,6 +91,22 @@ public class TextToRGBA {
 		return intArray;
 	}
 	
-	/** Converts */
-	
+	/** Generates all the pixels based on  */
+	public int[] genAllKey(int[] intArray){
+		// Creates blank array for pixels
+		int[] exportArray = new int[0];
+		// Gets size of the array
+		int size = intArray.length;
+		// Goes through each integer
+		for (int i=0;i<size;i++) {
+			int currentInt = intArray[i];
+			// Turns -127 to 127 into 1 to 255
+			int optimizedInt = currentInt + 128;
+			// Generates appropriate values for pixel
+			int[] onePixelArray = genPixel(optimizedInt);
+			// Adds pixel to the main array
+			exportArray = ArrayUtils.addAll(exportArray,onePixelArray);
+		}
+		return exportArray;
+	}
 }
