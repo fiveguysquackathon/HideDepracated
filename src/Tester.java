@@ -12,15 +12,7 @@ public class Tester {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
-		BufferedImage image = hey.imageRead();
-		System.out.print(image.getRGB(231,345)+"   ");
-		System.out.print(image.getRGB(271,334)+"   ");
-		System.out.print(image.getRGB(2411,445)+"   ");
-		System.out.print(image.getRGB(31,32)+"   ");
-		System.out.print(image.getRGB(245,445)+"   ");
-		System.out.print(image.getRGB(31,328)+"   ");
-		
-		int[] array = {-14862480,-14862225,-13287045,-15654847,-14866624,-14993041};
+		int[] array = {-18620,-14325,-11145,-15654847,-146624,-14993041,-14943041,-14866624};
 		hey.encryptPixels(array);
 		
 		heyy.ImageDescrypting();
