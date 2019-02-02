@@ -21,7 +21,7 @@ public class Menu {
         String textInput;
         try {
             // Getting the password from the file
-            fReader = new FileReader("FiveGuys/src/password.txt");
+            fReader = new FileReader("data/password.txt");
             bReader = new BufferedReader(fReader);
             textInput = bReader.readLine();
             // Makes sure the password is not null
