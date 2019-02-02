@@ -11,7 +11,7 @@ public class PhotoManipulation {
 
 	public void openFile() {
 		try {
-			input = new File("./media/image.png");
+			input = new File("../media/blank.png");
 			img = ImageIO.read(input);
 		} catch (IOException e) {
 			System.out.println(e);
@@ -21,7 +21,7 @@ public class PhotoManipulation {
 
 	public void writeToFile() {
 		try {
-			output = new File("./media/image2.png");
+			output = new File("../media/image2.png");
 			ImageIO.write(img, "png", output);
 		} catch (IOException t) {
 			System.out.println(t);
@@ -49,6 +49,31 @@ public class PhotoManipulation {
 
 	public int getPixel(int x, int y) {
 		return img.getRGB(x, y);
+
+	}
+
+	public void createImage(int[] input) {
+		int width = img.getWidth();
+		int height = img.getHeight();
+		int counter = 0;
+		int length = input.length;
+		System.out.println(height + " " + width + " " + length);
+
+		for (int i = 0; i < height - 1; i++) {
+
+			for (int j = 0; i < width - 1; j++) {
+
+				if (counter < length) {
+					changePixel(input[counter], j, i);
+					writeToFile();
+					counter++;
+				} else {
+					changePixel(150, j, i);
+				}
+				System.out.println(i + " " + j);
+			}
+
+		}
 
 	}
 
