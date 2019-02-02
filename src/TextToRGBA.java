@@ -1,5 +1,5 @@
 //import java.awt.Color;
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 
 public class TextToRGBA {
 	String privateKey = "";
