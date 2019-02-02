@@ -2,46 +2,42 @@
 import org.apache.commons.lang3.ArrayUtils;
 
 public class TextToRGBA {
-	String privateKey = "";
+	String cipherText = "Xb372ssg4";
 	//Color colourObj;
-	int height;
-	int width;
 	
 	TextToRGBA() {
 		 //colourObj = new Color(height, height, height, height);
-		 height = 512;
-		 width = 512;
 	}
 	
 	/** Splits the private key into an array of characters */
-	private char[] splitKey() {
-		int size = privateKey.length();
+	public char[] splitKey() {
+		int size = cipherText.length();
 		char[] characterArray = new char[size]; 
-		characterArray = privateKey.toCharArray();
+		characterArray = cipherText.toCharArray();
 		return characterArray;
 	}
 	
 	/** Converts characters into integer array */
-	private int[] convertInt(char[] characterArray) {
+	public int[] convertInt(char[] characterArray) {
 		int size = characterArray.length;
 		int[] intArray = new int[size];
-		for (int i=0;i>size;i++) {
+		for (int i=0;i<size;i++) {
 			intArray[i] = (int) characterArray[i];
 		}
 		return intArray;
 	}
 	
-	private int[] genAll(int[] intArray) {
-		
+	public int[] genAll(int[] intArray) {
 		int size = intArray.length;
-		int[] pixelArray = new int[size*4];
-		for (int i=1;i<=size;i++) {
+		int[] pixelArray = {intArray[0]};
+		for (int i=1;i<size;i++) {
 			int[] onePixelArray = genPixel(intArray[i]);
-			int[] combined = ArrayUtils.addAll(pixelArray, onePixelArray);
+			pixelArray = ArrayUtils.addAll(pixelArray, onePixelArray);
 		}
-		
+		return pixelArray;
 	}
-	private int[] genPixel(int ascii) {
+	
+	public int[] genPixel(int ascii) {
 		int red = ascii;
 		int green_prov = 128 - ascii;
 		int green;
