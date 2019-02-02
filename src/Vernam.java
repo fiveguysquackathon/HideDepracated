@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Arrays;
 
 public class Vernam {
 
@@ -24,7 +23,7 @@ public class Vernam {
             asciiList.add(Character.toString(newCharacter));
         }
         String[] asciiArrary = asciiList.toArray(new String[0]);
-        return new String[] {Arrays.toString(asciiArrary), Arrays.toString(shiftList.toArray(new String[0]))};
+        return new String[] {String.join("", asciiArrary), String.join(",", shiftList.toArray(new String[0]))};
     }
 
     private int[] genChar(int val){
