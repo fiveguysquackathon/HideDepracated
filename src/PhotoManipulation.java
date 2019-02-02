@@ -43,6 +43,23 @@ public class PhotoManipulation {
 		return rgb;
 	}
 
+	public String RGBSeparate(int RGB) {
+		Color tempColor = new Color(RGB);
+		int red;
+		int green;
+		int blue;
+
+		red = tempColor.getRed();
+		System.out.println(red);
+		green = tempColor.getGreen();
+		System.out.println(green);
+		blue = tempColor.getBlue();
+		System.out.println(blue);
+
+		System.out.println(red + "," + green + "," + blue);
+		return red + "," + green + "," + blue;
+	}
+
 	public void changePixel(int rgb, int x, int y) {
 		img.setRGB(x, y, rgb);
 	}
