@@ -67,14 +67,14 @@ public class PhotoManipulation {
 	}
 
 	public int[][] returnText(int[] encoded) {
-		int[][] temp = null;
+		int[][] temp = new int[encoded.length][3];
 		for (int i = 0; i < encoded.length; i++) {
 			temp[i][0] = RGBSeparate(encoded[i], 0);
 			temp[i][1] = RGBSeparate(encoded[i], 1);
 			temp[i][2] = RGBSeparate(encoded[i], 2);
 
 		}
-		return null;
+		return temp;
 
 	}
 

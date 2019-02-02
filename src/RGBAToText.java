@@ -18,7 +18,7 @@ public class RGBAToText {
 //		};
 		
 	public String[] getText(int[][] textRGB) {
-		int size = textRGB.length;
+		int size = textRGB[0].length;
 		String[] textArray = new String[0];
 		
 		for (int i=0;i<size;i++) {

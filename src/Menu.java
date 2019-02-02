@@ -8,10 +8,13 @@ public class Menu {
 	
 	private Vernam vernam;
 	private TextToRGBA textToRGBA;
+	private RGBAToText rtt;
+	
 	
 	int[] textRGB;
 	int[] keyRGB;
 	String[] cipherAndKey;
+	private PhotoManipulation pm;
 	
     public static void main(String[] args) {
         Menu menu = new Menu();
@@ -122,7 +125,7 @@ public class Menu {
         
 //        GETTING EVERYTHING TO BRANDON
         
-        PhotoManipulation pm = new PhotoManipulation();
+        pm = new PhotoManipulation();
         pm.openFile();
         pm.encodeKey(keyRGB);
         pm.writeToFile();
@@ -131,10 +134,19 @@ public class Menu {
     
     public void decryption() {
     	vernam = new Vernam();
+    	pm = new PhotoManipulation();
     	
     	
     	
-    	String dataOutput = vernam.decrypt(cipherAndKey);
+    	rtt = new RGBAToText();
+    	
+    	int[][] textArray = pm.returnText(textRGB);
+    	
+    	String[] anotherTextArray = rtt.getText(textArray);
+    	
+    	
+    	
+    	String dataOutput = vernam.decrypt(anotherTextArray);
     	System.out.println("By decrypting, we got: " + dataOutput);
     }
 }
