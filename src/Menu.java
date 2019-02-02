@@ -5,13 +5,23 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
+	
+	private Vernam vernam;
+	private TextToRGBA textToRGBA;
+	
+	int[] textRGB;
+	int[] keyRGB;
+	String[] cipherAndKey;
+	
     public static void main(String[] args) {
         Menu menu = new Menu();
-        if(menu.password()) {
-            menu.display();
-        } else {
-            System.out.println("Password Incorrect");
-        }
+        menu.display();
+        menu.decryption();
+//        if(menu.password()) {
+//            menu.display();
+//        } else {
+//            System.out.println("Password Incorrect");
+//        }
         
     }
 
@@ -37,7 +47,6 @@ public class Menu {
 
         String input = scanner.nextLine();
         int password = input.hashCode();
-        System.err.println(textInput + " " + password);
         if (Integer.parseInt(textInput) == password) {
             return true;
         } else {
@@ -71,11 +80,8 @@ public class Menu {
         		System.out.println("The message was too long, try another:");
         	} else if (!data.equals("exit")) {
         		System.out.println("Encrypting... " + data);
-        		
-        		if (data.equals("toggle")) {
-                    // run encryption methods
-                }
-        		data = scanner.nextLine();
+        				encryption(data);
+                    data = scanner.nextLine();
         		
         	} else {
         		data = scanner.nextLine();
@@ -84,5 +90,51 @@ public class Menu {
         } while(!data.equals("exit"));
         scanner.close();
         return;
+    }
+    
+    public void encryption(String data) {
+    	
+//    	GETTING EVERYTHING FROM NICK
+    	
+    	vernam = new Vernam();
+        textToRGBA = new TextToRGBA();
+        cipherAndKey = vernam.encrypt(data);
+        
+//        System.out.println("Cipher text " + cipherAndKey[0]);
+//        System.out.println("Cipher key " + cipherAndKey[1]);
+        
+//        GETTING EVERYTHING FROM MAX
+        
+        textRGB = textToRGBA.getTextRGB(cipherAndKey);
+        keyRGB = textToRGBA.getKeyRGB(cipherAndKey);
+//        
+//        for (int i = 0; i < textRGB.length; i++) {
+//        	System.out.println(textRGB[i]);
+//        }
+//        for (int i = 0; i < keyRGB.length; i++) {
+//        	System.out.println(keyRGB[i]);
+//        }
+        
+//        GETTING EVERYTHING FROM ELLIE
+        
+        
+        
+        
+//        GETTING EVERYTHING TO BRANDON
+        
+        PhotoManipulation pm = new PhotoManipulation();
+        pm.openFile();
+        pm.encodeKey(keyRGB);
+        pm.writeToFile();
+        pm.printVals();
+    }
+    
+    public void decryption() {
+    	vernam = new Vernam();
+    	
+    	
+    	
+    	String dataOutput = vernam.decrypt(cipherAndKey);
+    	System.out.println("By decrypting, we got: " + dataOutput);
     }
 }
