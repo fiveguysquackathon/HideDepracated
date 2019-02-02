@@ -74,6 +74,7 @@ public class PhotoManipulation {
 			temp[i][2] = RGBSeparate(encoded[i], 2);
 
 		}
+
 		return temp;
 
 	}
@@ -82,8 +83,9 @@ public class PhotoManipulation {
 		img.setRGB(x, y, rgb);
 	}
 
-	public void printVals() {
+	public void printVals() { 
 		for (int i = img.getHeight()-10; i < img.getHeight(); i++) {
+
 			for (int j = 0; j < 10; j++) {
 				System.out.print(getPixel(j, i) + " ");
 			}
