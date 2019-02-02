@@ -11,7 +11,8 @@ public class PhotoManipulation {
 
 	public void keyController(String Key, int[] nums) {
 		openFile();
-		encodeKey(Key, nums);
+		encodeCoord(Key);
+		encodeKey(nums);
 		writeToFile();
 	}
 
@@ -89,16 +90,18 @@ public class PhotoManipulation {
 			System.out.println("");
 		}
 	}
-
-	public void encodeKey(String key, int[] key2) {
-		String[] splitKey = key.split(",");
+	public void encodeCoord(String Key) {
+		String[] splitKey = Key.split(",");
 
 		for (int i = 0; i < splitKey.length; i++) {
 			changePixel(Integer.parseInt(splitKey[i]), i, 0);
 		}
+	}
+	public void encodeKey(int[] Key) {
+		
 
-		for (int j = 0; j < key2.length; j++) {
-			changePixel(key2[j], j, img.getHeight() - 1);
+		for (int j = 0; j < Key.length; j++) {
+			changePixel(Key[j], j, img.getHeight() - 1);
 		}
 
 	}
