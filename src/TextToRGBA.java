@@ -1,13 +1,10 @@
 //import java.awt.Color;
+import java.awt.Color;
+
 import org.apache.commons.lang3.ArrayUtils;
 
 public class TextToRGBA {
-	String cipherText = "Xb372ssg4";
-	//Color colourObj;
-	
-	TextToRGBA() {
-		 //colourObj = new Color(height, height, height, height);
-	}
+	String cipherText = "Xb372sSg4";
 	
 	/** Splits the private key into an array of characters */
 	public char[] splitKey() {
@@ -27,9 +24,9 @@ public class TextToRGBA {
 		return intArray;
 	}
 	
-	public int[] genAll(int[] intArray) {
+	public int[] oldGenAll(int[] intArray) {
 		int size = intArray.length;
-		int[] pixelArray = {intArray[0]};
+		int[] pixelArray = genPixel(intArray[0]);
 		for (int i=1;i<size;i++) {
 			int[] onePixelArray = genPixel(intArray[i]);
 			pixelArray = ArrayUtils.addAll(pixelArray, onePixelArray);
@@ -53,5 +50,16 @@ public class TextToRGBA {
 		
 		int onePixelArray[] = {red,green,blue,opacity};
 		return onePixelArray;
+	}
+	
+	public int[] genAll(int[] intArray) {
+		int size = intArray.length;
+		int[] pixelArray = new int[size];
+		for (int i=0;i<size;i++) {
+			int[] onePixelArray = genPixel(intArray[i]);
+			int rgb = new Color(onePixelArray[0],onePixelArray[1],onePixelArray[2]).getRGB();
+			pixelArray = ArrayUtils.addAll(onePixelArray);
+		}
+		return pixelArray;
 	}
 }
