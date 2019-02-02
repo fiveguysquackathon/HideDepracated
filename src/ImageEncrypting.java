@@ -70,7 +70,7 @@ public class ImageEncrypting {
 	
 	//---------------------------------------------------------------------------------------------------------------------//
 	
-	public void encryptPixels(int[] pixels) throws IOException {
+	public String encryptPixels(int[] pixels) throws IOException {
 		
 		int length = pixels.length;
 		
@@ -140,6 +140,8 @@ public class ImageEncrypting {
 		key = key + length/4 + "," + length%4;
 		
 		System.out.println(key+"\n");
+		
+		return key;
 		
 	}
 	
