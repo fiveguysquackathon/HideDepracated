@@ -9,9 +9,15 @@ public class PhotoManipulation {
 	File input = null;
 	File output = null;
 
+	public void keyController(String Key, int[] nums) {
+		openFile();
+		encodeKey(Key, nums);
+		writeToFile();
+	}
+
 	public void openFile() {
 		try {
-			input = new File("./media/blank.png");
+			input = new File("./media/Untitled.png");
 			img = ImageIO.read(input);
 		} catch (IOException e) {
 			System.out.println(e);
@@ -43,28 +49,62 @@ public class PhotoManipulation {
 		return rgb;
 	}
 
-	public String RGBSeparate(int RGB) {
+	public int RGBSeparate(int RGB, int type) {
 		Color tempColor = new Color(RGB);
-		int red;
-		int green;
-		int blue;
+		int output = 0;
 
-		red = tempColor.getRed();
-		System.out.println(red);
-		green = tempColor.getGreen();
-		System.out.println(green);
-		blue = tempColor.getBlue();
-		System.out.println(blue);
+		switch (type) {
+		case 0:
+			output = tempColor.getRed();
+		case 1:
+			output = tempColor.getGreen();
+		case 2:
+			output = tempColor.getBlue();
+		}
 
-		System.out.println(red + "," + green + "," + blue);
-		return red + "," + green + "," + blue;
+		return output;
+	}
+
+	public int[][] returnText(int[] encoded) {
+		int[][] temp = null;
+		for (int i = 0; i < encoded.length; i++) {
+			temp[i][0] = RGBSeparate(encoded[i], 0);
+			temp[i][1] = RGBSeparate(encoded[i], 1);
+			temp[i][2] = RGBSeparate(encoded[i], 2);
+
+		}
+		return null;
+
 	}
 
 	public void changePixel(int rgb, int x, int y) {
 		img.setRGB(x, y, rgb);
 	}
 
+	public void printVals() {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				System.out.print(getPixel(j, i) + " ");
+			}
+			System.out.println("");
+		}
+	}
+
+	public void encodeKey(String key, int[] key2) {
+		String[] splitKey = key.split(",");
+
+		for (int i = 0; i < splitKey.length; i++) {
+			changePixel(Integer.parseInt(splitKey[i]), i, 0);
+		}
+
+		for (int j = 0; j < key2.length; j++) {
+			changePixel(key2[j], j, img.getHeight() - 1);
+		}
+
+	}
+
 	public int getPixel(int x, int y) {
+
 		return img.getRGB(x, y);
 
 	}
