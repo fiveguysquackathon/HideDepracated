@@ -1,0 +1,93 @@
+//import java.awt.Color;
+import java.awt.Color;
+
+import org.apache.commons.lang3.ArrayUtils;
+
+public class TextToRGBA {
+	String cipherText, key;
+	
+	public int[] getTextRGB(String[] encryptionArray) {
+		cipherText = encryptionArray[0];
+		char[] characterArray = splitText();
+		int[] intArray = convertTextToInt(characterArray);
+		int[] textRGBArray = genAll(intArray);
+		return textRGBArray;
+	}
+	
+	public void getKeyRGB(String[] encryptionArray) {
+		key = encryptionArray[1];
+		String[] keyArray = key.split(",");
+		// Convert keyArray to IntArray
+		convertKeyToInt(keyArray);
+	}
+	
+	/** Splits the private key into an array of characters */
+	public char[] splitText() {
+		int size = cipherText.length();
+		char[] characterArray = new char[size]; 
+		characterArray = cipherText.toCharArray();
+		return characterArray;
+	}
+	
+	/** Converts text characters into integer array */
+	public int[] convertTextToInt(char[] characterArray) {
+		int size = characterArray.length;
+		int[] intArray = new int[size];
+		for (int i=0;i<size;i++) {
+			intArray[i] = (int) characterArray[i];
+		}
+		return intArray;
+	}
+	
+	public int[] oldGenAll(int[] intArray) {
+		int size = intArray.length;
+		int[] pixelArray = genPixel(intArray[0]);
+		for (int i=1;i<size;i++) {
+			int[] onePixelArray = genPixel(intArray[i]);
+			pixelArray = ArrayUtils.addAll(pixelArray, onePixelArray);
+		}
+		return pixelArray;
+	}
+	
+	public int[] genPixel(int ascii) {
+		int red = ascii;
+		int green_prov = 128 - ascii;
+		int green;
+		int blue = 256 - ascii;
+		int opacity = 1;
+		
+		if (green_prov < 0) {
+			green = green_prov*-1;
+		}
+		else {
+			green = green_prov;
+		}
+		
+		int onePixelArray[] = {red,green,blue,opacity};
+		return onePixelArray;
+	}
+	
+	public int[] genAll(int[] intArray) {
+		int size = intArray.length;
+		int[] pixelArray = new int[0];
+		for (int i=0;i<size;i++) {
+			int[] onePixelArray = genPixel(intArray[i]);
+			int[] rgb = {new Color(onePixelArray[0],onePixelArray[1],onePixelArray[2]).getRGB()};
+			pixelArray = ArrayUtils.addAll(pixelArray,rgb);
+		}
+		return pixelArray;
+	}
+	
+	/** Converts key string array into integer array */
+	public int[] convertKeyToInt(String[] stringArray) {
+		int size = stringArray.length;
+		int[] intArray = new int[size];
+		for (int i=0;i<size;i++) {
+			intArray[i] = Integer.parseInt(stringArray[i]);
+		}
+		return intArray;
+	}
+	
+	/** Converts */
+	
+}

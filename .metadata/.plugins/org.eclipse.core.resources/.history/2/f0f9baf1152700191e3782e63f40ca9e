@@ -1,0 +1,19 @@
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Tester testObj = new Tester();
+		testObj.maxTests();
+	}
+	
+	public void maxTests() {
+		String[] encryptionArray = {"7Xtej373v","30,60,1000,5533"};
+		TextToRGBA textToRGBAObj = new TextToRGBA();
+		int[] keyRGBArray = textToRGBAObj.getKeyRGB(encryptionArray);
+		
+		for (int i=0;i<keyRGBArray.length;i++) {
+			System.out.printf(keyRGBArray[i] + ",");
+		}
+	}
+
+}

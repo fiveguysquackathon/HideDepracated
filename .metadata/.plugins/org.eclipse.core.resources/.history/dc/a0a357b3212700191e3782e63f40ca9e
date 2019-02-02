@@ -1,0 +1,38 @@
+
+public class RGBAToText {
+	String[][] textRGB = new String[][]{
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		};
+		
+	String[][] keyRGB = new String[][]{
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		};
+		
+	public void getText() {
+		int size = textRGB.length;
+		
+		for (int i=0;i>size;i++) {
+			String red = textRGB[i][0];
+			String blue = textRGB[i][1];
+			String green = textRGB[i][2];
+			String[] onePixel = {red,green,blue};
+			int[] intArray = convertPixelToInt(onePixel);
+		}
+	}
+
+	private int[] convertPixelToInt(String[] onePixel) {
+		int red = Integer.parseInt(onePixel[0]);
+		int green = Integer.parseInt(onePixel[1]);
+		int blue = Integer.parseInt(onePixel[2]);
+		
+		return null;
+	}
+}

@@ -1,0 +1,14 @@
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Tester testObj = new Tester();
+		testObj.maxTests();
+	}
+	
+	public void maxTests() {
+		TextToRGB textToRGBObj = new TextToRGB();
+		
+	}
+
+}

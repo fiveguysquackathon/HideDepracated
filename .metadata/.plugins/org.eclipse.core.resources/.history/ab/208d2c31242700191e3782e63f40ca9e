@@ -1,0 +1,45 @@
+import org.apache.commons.lang3.ArrayUtils;
+
+public class RGBAToText {
+	String[][] textRGB = new String[][]{
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		};
+		
+	String[][] keyRGB = new String[][]{
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		  {"255","255","255","1"},
+		};
+		
+	public void getText() {
+		int size = textRGB.length;
+		String[] text = new String[0];
+		
+		for (int i=0;i>size;i++) {
+			String red = textRGB[i][0];
+			int ascii = Integer.parseInt(red);
+			char character = (char) ascii;
+			String characterStr = String.valueOf(character);
+			text = ArrayUtils.addAll(text, characterStr);
+		}
+	}
+	
+	public void getKey() {
+		int size = keyRGB.length;
+		String[] key = new String[0];
+		
+		for (int i=0;i>size;i++) {
+			String red = textRGB[i][0];
+			int ascii = Integer.parseInt(red);
+			char character = (char) ascii;
+			String characterStr = String.valueOf(character);
+			key = ArrayUtils.addAll(text, characterStr);
+		}
+	}
+}

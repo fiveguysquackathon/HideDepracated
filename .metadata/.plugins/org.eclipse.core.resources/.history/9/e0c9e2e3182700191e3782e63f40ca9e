@@ -1,0 +1,7 @@
+
+public class RGBAToText {
+	String[] textRGB = {"255","255","255","1","255","255","255","1"};
+	String[] keyRGB = {"255","255","255","1","255","255","255","1"};
+	
+	public get
+}

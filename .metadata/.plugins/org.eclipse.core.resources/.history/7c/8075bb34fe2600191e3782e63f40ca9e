@@ -1,0 +1,26 @@
+
+public class Tester {
+
+	public static void main(String[] args) {
+//		Tester testObj = new Tester();
+//		testObj.maxTests();
+		PhotoManipulation test = new PhotoManipulation();
+		int[] nums = { 12345678, -12345678, 87654321, -87654321, 18273645, -18273645, 81726354, -81726354, 45362718,
+				-45362718, 54637281, -54637281 };
+		test.openFile();
+		test.createImage(nums);
+		test.writeToFile();
+	}
+	
+	public void maxTests() {
+		TextToRGBA textToRGBAObj = new TextToRGBA();
+		char[] characterArray = textToRGBAObj.splitKey();
+		int[] intArray = textToRGBAObj.convertInt(characterArray);
+		int[] pixelArray = textToRGBAObj.genAll(intArray);
+		
+		for (int i=0;i<pixelArray.length;i++) {
+			System.out.printf(pixelArray[i] + ",");
+		}
+	}
+
+}
