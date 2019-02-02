@@ -15,7 +15,7 @@ public class ImageEncrypting {
         try
         { 
         	
-            File input_file = new File("../media/picEncryption.jpg"); //image file path 
+            File input_file = new File("./media/1.jpg"); //image file path 
   
              // Reading input file 
             image = ImageIO.read(input_file); 
@@ -41,7 +41,7 @@ public class ImageEncrypting {
         try
         { 
             // Output file path 
-            File output_file = new File("../media/encryptedImage.jpg"); 
+            File output_file = new File("./media/2.jpg"); 
   
             // Writing to file taking type and path as 
             ImageIO.write(image, "jpg", output_file); 
@@ -91,9 +91,9 @@ public class ImageEncrypting {
 		
         //generates the places of the random pixels
 		for (int i=0;i<randomPixels;i++) {
-			x[i] = getRandomNumber(0,width);
-			y[i] = getRandomNumber(0,height);
-		}
+			x[i] = getRandomNumber(1,width-1);
+			y[i] = getRandomNumber(1,height-1);
+		}		
 		
 		// encryptes the pixels  
 		
@@ -108,6 +108,15 @@ public class ImageEncrypting {
 						count=count+4;
 					}
 				}
+				
+				System.out.println("\n");
+				System.out.println(image.getRGB(x[0], y[0]-1));
+				System.out.println(x[0] + "  " + (y[0]-1));
+				System.out.println(image.getRGB(x[0]+1, y[0]));
+				System.out.println((x[0]+1) + "  " + y[0]);
+
+				System.out.println("\n");
+
 				
 				// NOT full random pixels
 				
