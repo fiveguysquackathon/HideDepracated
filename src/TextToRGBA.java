@@ -4,7 +4,15 @@ import java.awt.Color;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class TextToRGBA {
-	String cipherText = "Xb372sSg4";
+	String cipherText;
+	
+	public int[] general(String[] encryptionArray) {
+		cipherText = encryptionArray[0];
+		char[] characterArray = splitKey();
+		int[] intArray = convertInt(characterArray);
+		int[] pixelArray = genAll(intArray);
+		return pixelArray;
+	}
 	
 	/** Splits the private key into an array of characters */
 	public char[] splitKey() {
