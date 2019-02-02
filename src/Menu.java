@@ -30,7 +30,8 @@ public class Menu {
             }
             
             // Allows the user to input validation
-            Scanner scanner = new Scanner(System.in);
+            @SuppressWarnings("resource")
+			Scanner scanner = new Scanner(System.in);
 
         System.out.println("Please enter the password to begin the program:");
 
@@ -39,9 +40,9 @@ public class Menu {
         System.err.println(textInput + " " + password);
         if (Integer.parseInt(textInput) == password) {
             return true;
-        }
+        } else {
 
-        scanner.close();
+        }
 
         } catch(FileNotFoundException e) {
 
@@ -60,18 +61,26 @@ public class Menu {
     public void display() {
         Scanner scanner = new Scanner(System.in);
     
-        System.out.println("Please enter the data you would like to hide");
+        System.out.println("Please enter the data you would like to hide (max 150 characters)");
         System.out.println("If you would like to exit the program, please type 'exit'");
 
         String data = scanner.nextLine();
-
+        
         do {
-            System.out.println("Encrypting..." + data);
-            data = scanner.nextLine();
-
-            if (data.equals("toggle")) {
-                // run encryption methods
-            }
+        	if (data.length() > 150) {
+        		System.out.println("The message was too long, try another:");
+        	} else if (!data.equals("exit")) {
+        		System.out.println("Encrypting... " + data);
+        		
+        		if (data.equals("toggle")) {
+                    // run encryption methods
+                }
+        		data = scanner.nextLine();
+        		
+        	} else {
+        		data = scanner.nextLine();
+        	}
+            
         } while(!data.equals("exit"));
         scanner.close();
         return;
