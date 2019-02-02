@@ -91,7 +91,7 @@ public class ImageEncrypting {
 		
         //generates the places of the random pixels
 		for (int i=0;i<randomPixels;i++) {
-			x[i] = getRandomNumber(1,width-1);
+			x[i] = getRandomNumber(3,width-4);
 			y[i] = getRandomNumber(1,height-1);
 		}		
 		
@@ -145,20 +145,6 @@ public class ImageEncrypting {
 	
 	//---------------------------------------------------------------------------------------------------------------------//
 	
-	public void printVals(BufferedImage image) {
-		for (int i = 0; i < image.getHeight(); i++) {
-			for (int j = 0; j < image.getWidth(); j++) {
-				System.out.print(getPixel(j, i, image) + " ");
-			}
-			System.out.println("");
-		}
-	}
-	
-	public int getPixel(int x, int y,  BufferedImage image) {
-
-		return image.getRGB(x, y);
-
-	}
 	
 	
 	
