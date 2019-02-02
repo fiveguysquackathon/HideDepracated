@@ -83,7 +83,7 @@ public class PhotoManipulation {
 	}
 
 	public void printVals() {
-		for (int i = img.getHeight()-10; i < img.getHeight(); i++) {
+		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				System.out.print(getPixel(j, i) + " ");
 			}
@@ -136,5 +136,4 @@ public class PhotoManipulation {
 		}
 
 	}
-
 }
