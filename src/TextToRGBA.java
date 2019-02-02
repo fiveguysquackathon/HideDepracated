@@ -54,11 +54,11 @@ public class TextToRGBA {
 	
 	public int[] genAll(int[] intArray) {
 		int size = intArray.length;
-		int[] pixelArray = new int[size];
+		int[] pixelArray = new int[0];
 		for (int i=0;i<size;i++) {
 			int[] onePixelArray = genPixel(intArray[i]);
-			int rgb = new Color(onePixelArray[0],onePixelArray[1],onePixelArray[2]).getRGB();
-			pixelArray = ArrayUtils.addAll(onePixelArray);
+			int[] rgb = {new Color(onePixelArray[0],onePixelArray[1],onePixelArray[2]).getRGB()};
+			pixelArray = ArrayUtils.addAll(pixelArray,rgb);
 		}
 		return pixelArray;
 	}
