@@ -11,12 +11,12 @@ public class Tester {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-
-		int[] array = {-18620,-14325,-11145,-15654847,-146624,-14993041,-14943041,-14866624};
-		hey.encryptPixels(array);
-		
-		heyy.ImageDescrypting();
-		
+//
+//		int[] array = {-18620,-14325,-11145,-15654847,-146624,-14993041,-14943041,-14866624};
+//		hey.encryptPixels(array);
+//
+//		heyy.ImageDescrypting();
+//
 	}
 
 }
