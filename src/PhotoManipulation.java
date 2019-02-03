@@ -101,7 +101,7 @@ return temp;
 	}
 	public void encodeCoord(String Key) {
 		String[] splitKey = Key.split(",");
-		int temp = Key.length();
+		int temp = splitKey.length;
 		changePixel(temp,0,0);
 		for (int i = 0; i < splitKey.length; i++) {
 			changePixel(Integer.parseInt(splitKey[i]), i, 0);

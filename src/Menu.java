@@ -19,7 +19,7 @@ public class Menu {
 	
     public static void main(String[] args) {
         Menu menu = new Menu();
-//        menu.display();
+        menu.display();
         menu.decryption();
 //        if(menu.password()) {
 //            menu.display();
@@ -143,7 +143,8 @@ public class Menu {
     	pm = new PhotoManipulation();
     	id = new ImageDescrypting();
     	rtt = new RGBAToText();
-    	
+
+    	pm.openFile();
     	int[] coords = pm.decodeCoord();
     	String textCoords = pm.returnCoord(coords);
     	int[] ctext;
