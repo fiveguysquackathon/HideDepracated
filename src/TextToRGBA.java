@@ -6,9 +6,9 @@ import org.apache.commons.lang3.ArrayUtils;
 public class TextToRGBA {
 	String cipherText, key;
 	
-	public int[] getTextRGB(String[] encryptionArray) {
+	public int[] getTextRGB(String encryptionArray) {
 		
-		cipherText = encryptionArray[0];
+		cipherText = encryptionArray;
 		char[] characterArray = splitText();
 		int[] intArray = convertTextToInt(characterArray);
 		int[] textRGBArray = genAllText(intArray);

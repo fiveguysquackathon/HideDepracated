@@ -72,13 +72,15 @@ public class Vernam {
         System.out.println("Output: \n\n\n");
         
         for (int i = 0; i<cipherArray.length ; i++){
-            
             asciiOfCTD = Integer.parseInt(cipherArray[i]);
+            String tempStr = keyText[i];
+            char tempChar = tempStr.charAt(0);
+            int newVal =  asciiOfCTD - (int)(tempChar);
+            char newChar = (char) newVal;
             
-            char newVal = (char) (asciiOfCTD - Integer.parseInt(keyText[i]));
-            System.out.println((newVal));
-            decryptedText.add(Character.toString(newVal));
-        	finalOutput += decryptedText.get(i);
+            //decryptedText.add(Character.toString(newVal));
+            
+        	finalOutput += newChar;
         }
         return finalOutput;
     }
