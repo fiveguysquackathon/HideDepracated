@@ -19,37 +19,46 @@ public class RGBAToText {
 		
 	public String[] getText(int[] textRGBInt) {
 		int size = textRGBInt.length;
-		String[] textArray = new String[0];
+		String[] stringArray = new String[textRGBInt.length];
+		
+//		for (int i =0; i< size; i++) {
+//			textArray[i] = (textRGBInt[i]) + ",";
+//		}
 		
 		for (int i=0;i<size;i++) {
 			int rgbAsInt = textRGBInt[i];
 			int red = rgbAsInt & 255;
-			char character = (char) red;
-			String characterStr = String.valueOf(character);
-			textArray = ArrayUtils.addAll(textArray, characterStr);
+			if( i+1 == size) {
+				stringArray[i] = ""+red;
+			}else {
+				stringArray[i] = ""+red+ ",";
+			}
+			
 		}
 		
 		//String text = String.join("", textArray);
-		return textArray;
+		return stringArray;
 	}
 	
 	public String[] getKey(int[] keyRGB) {
 		int size = keyRGB.length;
-		String[] keyArray = new String[0];
-		
-		for (int i=0;i<size;i++) {
-			int red = keyRGB[i];
-			//int optimizedInt = Integer.parseInt(red);
-			int actualInt = red - 128;
-			char character = (char) actualInt;
-			String characterStr = String.valueOf(character);
-			keyArray = ArrayUtils.addAll(keyArray, characterStr);
+		String[] keyArray = new String[keyRGB.length];
+		for (int i =0; i< size; i++) {
+			keyArray[i] = (String) ((keyRGB[i]-128) + ",");
 		}
+//		for (int i=0;i<size;i++) {
+//			int red = keyRGB[i];
+////			int optimizedInt = Integer.parseInt(red);
+//			int actualInt = red - 128;
+//			char character = (char) actualInt;
+//			String characterStr = String.valueOf(character);
+//			keyArray = ArrayUtils.addAll(keyArray, characterStr);
+//		}
 		System.out.println("MAX's wee kee is likeee something along the lynes of this");
 		for(int i = 0; i<size; i++) {
 			System.out.print(keyArray[i] + " ");
 		}
-		System.out.println("I just printed his key lol... it is this many characters long :D " + keyArray.length);
+//		System.out.println("I just printed his key lol... it is this many characters long :D " + keyArray.length);
 		//String key = String.join(",", keyArray);
 		return keyArray;
 	}
