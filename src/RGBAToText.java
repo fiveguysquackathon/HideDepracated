@@ -32,14 +32,14 @@ public class RGBAToText {
 		return textArray;
 	}
 	
-	public String[] getKey(String[][] keyRGB) {
+	public String[] getKey(int[][] keyRGB) {
 		int size = keyRGB.length;
 		String[] keyArray = new String[0];
 		
 		for (int i=0;i<size;i++) {
-			String red = keyRGB[i][0];
-			int optimizedInt = Integer.parseInt(red);
-			int actualInt = optimizedInt - 128;
+			int red = keyRGB[i][0];
+			//int optimizedInt = Integer.parseInt(red);
+			int actualInt = red - 128;
 			char character = (char) actualInt;
 			String characterStr = String.valueOf(character);
 			keyArray = ArrayUtils.addAll(keyArray, characterStr);
