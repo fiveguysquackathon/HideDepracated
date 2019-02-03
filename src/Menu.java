@@ -113,7 +113,18 @@ public class Menu {
         
         textRGB = textToRGBA.getTextRGB(cipherAndKey);
         keyRGB = textToRGBA.getKeyRGB(cipherAndKey);
-//        
+        
+        int tempLength = keyRGB.length;
+        int[] keyR = new int[tempLength/4];
+        int counter = 0;
+        System.out.println("");
+        for(int i = 0; i<tempLength; i+=4) {
+        		keyR[counter] = keyRGB[i];
+        		System.out.print(keyR[counter] + " ");
+        		counter++;
+        }
+        System.out.println("");
+        
 //        for (int i = 0; i < textRGB.length; i++) {
 //        	System.out.println(textRGB[i]);
 //        }
@@ -134,7 +145,7 @@ public class Menu {
         
         pm = new PhotoManipulation();
         pm.openFile();
-        pm.encodeKey(keyRGB);
+        pm.encodeKey(keyR);
         pm.encodeCoord(key);
         pm.writeToFile();
     }
@@ -156,8 +167,8 @@ public class Menu {
 
 
             int[] keyArray = pm.decodeKey();
-            int[] key = pm.returnText(keyArray);
-            String[] decodedKey = rtt.getKey(key);
+//            int[] key = pm.returnText(keyArray);
+            String[] decodedKey = rtt.getKey(keyArray);
             String[] cipherText = rtt.getText(ctext);
 
             cipherAndKey[0] = "";
@@ -168,7 +179,9 @@ public class Menu {
             for (int v = 0; v < decodedKey.length; v++) {
             	cipherAndKey[1] += decodedKey[v];
             }
-            System.out.println("\nTHAT KEY DOE " + cipherAndKey[1]+" and it is this long ;)" + cipherAndKey[1].length() + " \n");
+            
+//            System.out.println("Cipher 0: "+ cipherAndKey[0] + " Cipher 1: "+ cipherAndKey[1]);
+//            System.out.println("\nTHAT KEY DOE " + cipherAndKey[1]+" and it is this long ;)" + cipherAndKey[1].length() + " \n");
             
             
             String dataOutput = vernam.decrypt(cipherAndKey);

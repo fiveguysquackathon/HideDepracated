@@ -7,10 +7,12 @@ public class TextToRGBA {
 	String cipherText, key;
 	
 	public int[] getTextRGB(String[] encryptionArray) {
+		
 		cipherText = encryptionArray[0];
 		char[] characterArray = splitText();
 		int[] intArray = convertTextToInt(characterArray);
 		int[] textRGBArray = genAllText(intArray);
+		
 		return textRGBArray;
 	}
 	
@@ -19,8 +21,10 @@ public class TextToRGBA {
 		String[] keyArray = key.split(",");
 		// Convert keyArray to IntArray
 		int[] intArray = convertKeyToInt(keyArray);
+		
 		// Generates pixels
 		int[] keyRGBArray = genAllKey(intArray);
+		
 		return keyRGBArray;
 	}
 	

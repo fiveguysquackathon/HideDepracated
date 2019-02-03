@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -60,17 +61,26 @@ public class Vernam {
      */
     String decrypt(String[] cipher){
         String cipherText = cipher[0];
+        String[] cipherArray = cipherText.split(",");
         String[] keyText = cipher[1].split(",");
         List<String> decryptedText = new ArrayList<>();
-        char characterToDecrypt;
+        String characterToDecrypt;
+        String finalOutput = "";
         int asciiOfCTD;
-        for (int i = 0; i<cipherText.length(); i++){
-            characterToDecrypt = cipherText.charAt(i);
-            asciiOfCTD = (int) characterToDecrypt;
+
+        System.out.println("");
+        System.out.println("Output: \n\n\n");
+        
+        for (int i = 0; i<cipherArray.length ; i++){
+            
+            asciiOfCTD = Integer.parseInt(cipherArray[i]);
+            
             char newVal = (char) (asciiOfCTD - Integer.parseInt(keyText[i]));
+            System.out.println((newVal));
             decryptedText.add(Character.toString(newVal));
+        	finalOutput += decryptedText.get(i);
         }
-        return String.join("", decryptedText.toArray(new String[0]));
+        return finalOutput;
     }
 
 }

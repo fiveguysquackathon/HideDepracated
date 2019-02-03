@@ -106,11 +106,14 @@ return temp;
 	}
 	public void encodeKey(int[] Key) {
 		int temp = Key.length;
-		System.out.println(temp);
+//		System.out.println("Length of Key[] before it has been encoded: "+temp);
 		changePixel(temp,0,img.getHeight()-1);
-		for (int j = 0; j < Key.length; j++) {
-			changePixel(Key[j], j, img.getHeight() - 1);
+//		System.out.println("GetPixels: " + getPixel(0, img.getHeight()-1));
+		for (int j = 1; j < Key.length + 1; j++) {
+//			System.out.print(Key[j-1] + " ");
+			changePixel(Key[j-1], j, img.getHeight() - 1);
 		}
+//		System.out.println("GetPixels: " + getPixel(0, img.getHeight()-1));
 
 	}
 	public int[] decodeKey(){
@@ -119,15 +122,19 @@ return temp;
 		System.out.println("length is " + length);
 		int[] temp = new int[length];
 		for(int i = 1; i<length+1; i++){
-			temp[i-1] = img.getRGB(i,img.getHeight()-1);
+			temp[i-1] = img.getRGB(i, img.getHeight()-1);
+			
+			
+			
 			System.out.print(temp[i-1] + " ");
+			
 		}
-		System.out.println("but brando's key is only this long?: " + temp.length);
+//		System.out.println("but brando's key is only this long?: " + temp.length);
 		return temp;
 	}
 	public int[] decodeCoord(){
 		int length = img.getRGB(0,0);
-		System.out.println(length);
+//		System.out.println(length);
 		int[] temp = new int[length];
 				for(int i = 1; i<length+1; i++){
 					temp[i-1] = img.getRGB(i,0);
