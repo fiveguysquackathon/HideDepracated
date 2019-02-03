@@ -8,6 +8,10 @@ public class Menu {
 	
 	private Vernam vernam;
 	private TextToRGBA textToRGBA;
+	private PhotoManipulation pm;
+	private ImageEncrypting ie;
+	private ImageDescrypting id;
+	private RGBAToText rtt;
 	
 	int[] textRGB;
 	int[] keyRGB;
@@ -99,6 +103,8 @@ public class Menu {
     	vernam = new Vernam();
         textToRGBA = new TextToRGBA();
         cipherAndKey = vernam.encrypt(data);
+//        System.out.println(cipherAndKey[0]);
+//        System.out.println(cipherAndKey[1]);
         
 //        System.out.println("Cipher text " + cipherAndKey[0]);
 //        System.out.println("Cipher key " + cipherAndKey[1]);
@@ -116,25 +122,60 @@ public class Menu {
 //        }
         
 //        GETTING EVERYTHING FROM ELLIE
-        
-        
-        
-        
+         ie = new ImageEncrypting();
+         String key = "";
+         try{
+             key = ie.encryptPixels(textRGB);
+         } catch (IOException e){
+             System.out.println("lmao sorry fella ya done fucked it");
+         }
+
 //        GETTING EVERYTHING TO BRANDON
         
-        PhotoManipulation pm = new PhotoManipulation();
+        pm = new PhotoManipulation();
         pm.openFile();
         pm.encodeKey(keyRGB);
+        pm.encodeCoord(key);
         pm.writeToFile();
-        pm.printVals();
     }
     
-    public void decryption() {
+    private void decryption() {
     	vernam = new Vernam();
-    	
-    	
-    	
-    	String dataOutput = vernam.decrypt(cipherAndKey);
-    	System.out.println("By decrypting, we got: " + dataOutput);
+    	pm = new PhotoManipulation();
+    	id = new ImageDescrypting();
+    	rtt = new RGBAToText();
+
+    	pm.openFile();
+    	int[] coords = pm.decodeCoord();
+    	String textCoords = pm.returnCoord(coords);
+    	int[] ctext;
+
+
+    	try{
+            ctext = id.ImageDescrypting(textCoords);
+
+
+            int[] keyArray = pm.decodeKey();
+            int[] key = pm.returnText(keyArray);
+            String[] decodedKey = rtt.getKey(key);
+            String[] cipherText = rtt.getText(ctext);
+
+            cipherAndKey[0] = "";
+            cipherAndKey[1] = "";
+            for (int p = 0; p < cipherText.length; p++) {
+            	cipherAndKey[0] += cipherText[p];
+            }
+            for (int v = 0; v < decodedKey.length; v++) {
+            	cipherAndKey[1] += decodedKey[v];
+            }
+            System.out.println("\nTHAT KEY DOE " + cipherAndKey[1]+" and it is this long ;)" + cipherAndKey[1].length() + " \n");
+            
+            
+            String dataOutput = vernam.decrypt(cipherAndKey);
+            System.out.println("By decrypting, we got: " + dataOutput);
+        } catch (IOException e){
+            System.out.println("lmao sorry fella ya done fucked it");
+        }
+
     }
 }

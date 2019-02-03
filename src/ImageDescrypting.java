@@ -32,14 +32,11 @@ public class ImageDescrypting {
 	        
 		}
 
-	public int[] ImageDescrypting() throws IOException {
+	public int[] ImageDescrypting(String key) throws IOException {
 		 
 		BufferedImage imagex = ImageDescrypting.imageDescryptRead();
 		
-		// lets the user input the key
-		Scanner a = new Scanner(System.in) ;
-		System.out.print("Enter the key: ");
-		String key = a.nextLine();
+
 		
 		//splits the string and adds it into a array of strings
 		String[] parts = key.split(",");
