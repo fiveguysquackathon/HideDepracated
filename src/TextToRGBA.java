@@ -85,7 +85,9 @@ public class TextToRGBA {
 	public int[] convertKeyToInt(String[] stringArray) {
 		int size = stringArray.length;
 		int[] intArray = new int[size];
+		System.out.print(size + "\n");
 		for (int i=0;i<size;i++) {
+			System.out.print(stringArray[i] + " ");
 			intArray[i] = Integer.parseInt(stringArray[i]);
 		}
 		return intArray;

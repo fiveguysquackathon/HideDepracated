@@ -33,18 +33,23 @@ public class RGBAToText {
 		return textArray;
 	}
 	
-	public String[] getKey(int[][] keyRGB) {
+	public String[] getKey(int[] keyRGB) {
 		int size = keyRGB.length;
 		String[] keyArray = new String[0];
 		
 		for (int i=0;i<size;i++) {
-			int red = keyRGB[i][0];
+			int red = keyRGB[i];
 			//int optimizedInt = Integer.parseInt(red);
 			int actualInt = red - 128;
 			char character = (char) actualInt;
 			String characterStr = String.valueOf(character);
 			keyArray = ArrayUtils.addAll(keyArray, characterStr);
 		}
+		System.out.println("MAX's wee kee is likeee something along the lynes of this");
+		for(int i = 0; i<size; i++) {
+			System.out.print(keyArray[i] + " ");
+		}
+		System.out.println("I just printed his key lol... it is this many characters long :D " + keyArray.length);
 		//String key = String.join(",", keyArray);
 		return keyArray;
 	}

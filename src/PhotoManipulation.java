@@ -53,25 +53,16 @@ public class PhotoManipulation {
 	public int RGBSeparate(int RGB, int type) {
 		Color tempColor = new Color(RGB);
 		int output = 0;
-
-		switch (type) {
-		case 0:
 			output = tempColor.getRed();
-		case 1:
-			output = tempColor.getGreen();
-		case 2:
-			output = tempColor.getBlue();
-		}
-
+	
 		return output;
 	}
 
-	public int[][] returnText(int[] encoded) {
-		int[][] temp = new int[encoded.length][3];
+	public int[] returnText(int[] encoded) {
+		int[] temp = new int[encoded.length];
 		for (int i = 0; i < encoded.length; i++) {
-			temp[i][0] = RGBSeparate(encoded[i], 0);
-			temp[i][1] = RGBSeparate(encoded[i], 1);
-			temp[i][2] = RGBSeparate(encoded[i], 2);
+			temp[i] = RGBSeparate(encoded[i], 0);
+		
 
 		}
 
@@ -83,7 +74,12 @@ public class PhotoManipulation {
 		String temp = "";
 
 		for(int i = 0; i<encoded.length; i++){
-			temp = temp + Integer.toString(encoded[i]);
+			if(i+1 == encoded.length) {
+				temp = temp + Integer.toString(encoded[i]);
+			}else {
+				temp = temp + Integer.toString(encoded[i]) + ",";
+			}
+			
 		}
 return temp;
 	}
@@ -104,12 +100,13 @@ return temp;
 		String[] splitKey = Key.split(",");
 		int temp = splitKey.length;
 		changePixel(temp,0,0);
-		for (int i = 0; i < splitKey.length; i++) {
-			changePixel(Integer.parseInt(splitKey[i]), i, 0);
+		for (int i = 1; i < (splitKey.length)+1; i++) {
+			changePixel(Integer.parseInt(splitKey[i-1]), i, 0);
 		}
 	}
 	public void encodeKey(int[] Key) {
 		int temp = Key.length;
+		System.out.println(temp);
 		changePixel(temp,0,img.getHeight()-1);
 		for (int j = 0; j < Key.length; j++) {
 			changePixel(Key[j], j, img.getHeight() - 1);
@@ -117,18 +114,23 @@ return temp;
 
 	}
 	public int[] decodeKey(){
-		int[] temp = null;
+		
 		int length = img.getRGB(0,img.getHeight()-1);
+		System.out.println("length is " + length);
+		int[] temp = new int[length];
 		for(int i = 1; i<length+1; i++){
-			temp[i] = img.getRGB(i,img.getHeight()-1);
+			temp[i-1] = img.getRGB(i,img.getHeight()-1);
+			System.out.print(temp[i-1] + " ");
 		}
+		System.out.println("but brando's key is only this long?: " + temp.length);
 		return temp;
 	}
 	public int[] decodeCoord(){
 		int length = img.getRGB(0,0);
+		System.out.println(length);
 		int[] temp = new int[length];
 				for(int i = 1; i<length+1; i++){
-					temp[i] = img.getRGB(i,0);
+					temp[i-1] = img.getRGB(i,0);
 
 				}
 				return temp;

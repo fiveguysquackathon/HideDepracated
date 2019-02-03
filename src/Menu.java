@@ -103,6 +103,8 @@ public class Menu {
     	vernam = new Vernam();
         textToRGBA = new TextToRGBA();
         cipherAndKey = vernam.encrypt(data);
+//        System.out.println(cipherAndKey[0]);
+//        System.out.println(cipherAndKey[1]);
         
 //        System.out.println("Cipher text " + cipherAndKey[0]);
 //        System.out.println("Cipher key " + cipherAndKey[1]);
@@ -135,7 +137,6 @@ public class Menu {
         pm.encodeKey(keyRGB);
         pm.encodeCoord(key);
         pm.writeToFile();
-        pm.printVals();
     }
     
     private void decryption() {
@@ -155,14 +156,21 @@ public class Menu {
 
 
             int[] keyArray = pm.decodeKey();
-            int[][] key = pm.returnText(keyArray);
-
+            int[] key = pm.returnText(keyArray);
             String[] decodedKey = rtt.getKey(key);
             String[] cipherText = rtt.getText(ctext);
 
-
-            cipherAndKey[0] = cipherText.toString();
-            cipherAndKey[1] = decodedKey.toString();
+            cipherAndKey[0] = "";
+            cipherAndKey[1] = "";
+            for (int p = 0; p < cipherText.length; p++) {
+            	cipherAndKey[0] += cipherText[p];
+            }
+            for (int v = 0; v < decodedKey.length; v++) {
+            	cipherAndKey[1] += decodedKey[v];
+            }
+            System.out.println("\nTHAT KEY DOE " + cipherAndKey[1]+" and it is this long ;)" + cipherAndKey[1].length() + " \n");
+            
+            
             String dataOutput = vernam.decrypt(cipherAndKey);
             System.out.println("By decrypting, we got: " + dataOutput);
         } catch (IOException e){
