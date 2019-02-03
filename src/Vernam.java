@@ -64,7 +64,6 @@ public class Vernam {
         List<String> decryptedText = new ArrayList<>();
         char characterToDecrypt;
         int asciiOfCTD;
-
         for (int i = 0; i<cipherText.length(); i++){
             characterToDecrypt = cipherText.charAt(i);
             asciiOfCTD = (int) characterToDecrypt;

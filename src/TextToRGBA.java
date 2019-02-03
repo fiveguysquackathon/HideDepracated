@@ -27,8 +27,8 @@ public class TextToRGBA {
 	/** Splits the private key into an array of characters */
 	public char[] splitText() {
 		int size = cipherText.length();
-		char[] characterArray = new char[size]; 
-		characterArray = cipherText.toCharArray();
+		char[] characterArray = cipherText.toCharArray();
+		
 		return characterArray;
 	}
 	
@@ -85,7 +85,9 @@ public class TextToRGBA {
 	public int[] convertKeyToInt(String[] stringArray) {
 		int size = stringArray.length;
 		int[] intArray = new int[size];
+		System.out.print(size + "\n");
 		for (int i=0;i<size;i++) {
+			System.out.print(stringArray[i] + " ");
 			intArray[i] = Integer.parseInt(stringArray[i]);
 		}
 		return intArray;
