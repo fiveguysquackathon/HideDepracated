@@ -31,7 +31,7 @@ public class RGBAToText {
 			if( i+1 == size) {
 				stringArray[i] = ""+red;
 			}else {
-				stringArray[i] = ""+red+ ",";
+				stringArray[i] = ""+red;
 			}
 			
 		}
@@ -44,17 +44,22 @@ public class RGBAToText {
 		int size = keyRGB.length;
 		String[] keyArray = new String[keyRGB.length];
 		for (int i =0; i< size; i++) {
-			keyArray[i] = (String) ((keyRGB[i]-128) + ",");
+			int actualInt = (keyRGB[i]);
+			char character = (char)actualInt;
+			if(i+1 == size) {
+				String characterStr = String.valueOf(character);
+				keyArray[i]=characterStr;
+			}else {
+			String characterStr = String.valueOf(character);
+			keyArray[i]=characterStr+",";
+		}
 		}
 //		for (int i=0;i<size;i++) {
 //			int red = keyRGB[i];
-////			int optimizedInt = Integer.parseInt(red);
+////		int optimizedInt = Integer.parseInt(red);
 //			int actualInt = red - 128;
-//			char character = (char) actualInt;
-//			String characterStr = String.valueOf(character);
 //			keyArray = ArrayUtils.addAll(keyArray, characterStr);
 //		}
-		System.out.println("MAX's wee kee is likeee something along the lynes of this");
 		for(int i = 0; i<size; i++) {
 			System.out.print(keyArray[i] + " ");
 		}
