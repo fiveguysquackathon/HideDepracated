@@ -17,12 +17,13 @@ public class RGBAToText {
 //		  {"255","255","255","1"},
 //		};
 		
-	public String[] getText(int[][] textRGB) {
-		int size = textRGB.length;
+	public String[] getText(int[] textRGBInt) {
+		int size = textRGBInt.length;
 		String[] textArray = new String[0];
 		
 		for (int i=0;i<size;i++) {
-			int red = textRGB[i][0];
+			int rgbAsInt = textRGBInt[i];
+			int red = rgbAsInt & 255;
 			char character = (char) red;
 			String characterStr = String.valueOf(character);
 			textArray = ArrayUtils.addAll(textArray, characterStr);
