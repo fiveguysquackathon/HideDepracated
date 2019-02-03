@@ -8,13 +8,14 @@ public class Menu {
 	
 	private Vernam vernam;
 	private TextToRGBA textToRGBA;
+	private PhotoManipulation pm;
+	private ImageEncrypting ie;
+	private ImageDescrypting id;
 	private RGBAToText rtt;
-	
 	
 	int[] textRGB;
 	int[] keyRGB;
 	String[] cipherAndKey;
-	private PhotoManipulation pm;
 	
     public static void main(String[] args) {
         Menu menu = new Menu();
@@ -119,34 +120,54 @@ public class Menu {
 //        }
         
 //        GETTING EVERYTHING FROM ELLIE
-        
-        
-        
-        
+         ie = new ImageEncrypting();
+         String key = "";
+         try{
+             key = ie.encryptPixels(textRGB);
+         } catch (IOException e){
+             System.out.println("lmao sorry fella ya done fucked it");
+         }
+
 //        GETTING EVERYTHING TO BRANDON
         
         pm = new PhotoManipulation();
         pm.openFile();
         pm.encodeKey(keyRGB);
+        pm.encodeCoord(key);
         pm.writeToFile();
         pm.printVals();
     }
     
-    public void decryption() {
+    private void decryption() {
     	vernam = new Vernam();
     	pm = new PhotoManipulation();
-    	
-    	
-    	
+    	id = new ImageDescrypting();
     	rtt = new RGBAToText();
-    	
-    	int[][] textArray = pm.returnText(textRGB);
-    	
-    	String[] anotherTextArray = rtt.getText(textArray);
-    	
-    	
-    	
-    	String dataOutput = vernam.decrypt(anotherTextArray);
-    	System.out.println("By decrypting, we got: " + dataOutput);
+
+    	pm.openFile();
+    	int[] coords = pm.decodeCoord();
+    	String textCoords = pm.returnCoord(coords);
+    	int[] ctext;
+
+
+    	try{
+            ctext = id.ImageDescrypting(textCoords);
+
+
+            int[] keyArray = pm.decodeKey();
+            int[][] key = pm.returnText(keyArray);
+
+            String[] decodedKey = rtt.getKey(key);
+            String[] cipherText = rtt.getText(ctext);
+
+
+            cipherAndKey[0] = cipherText.toString();
+            cipherAndKey[1] = decodedKey.toString();
+            String dataOutput = vernam.decrypt(cipherAndKey);
+            System.out.println("By decrypting, we got: " + dataOutput);
+        } catch (IOException e){
+            System.out.println("lmao sorry fella ya done fucked it");
+        }
+
     }
 }

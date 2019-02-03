@@ -18,7 +18,7 @@ public class PhotoManipulation {
 
 	public void openFile() {
 		try {
-			input = new File("./media/Untitled.png");
+			input = new File("./media/2.png");
 			img = ImageIO.read(input);
 		} catch (IOException e) {
 			System.out.println(e);
@@ -28,7 +28,7 @@ public class PhotoManipulation {
 
 	public void writeToFile() {
 		try {
-			output = new File("./media/image2.png");
+			output = new File("./media/2.png");
 			ImageIO.write(img, "png", output);
 		} catch (IOException t) {
 			System.out.println(t);
@@ -78,14 +78,22 @@ public class PhotoManipulation {
 		return temp;
 
 	}
+	public String returnCoord(int[] encoded) {
+
+		String temp = "";
+
+		for(int i = 0; i<encoded.length; i++){
+			temp = temp + Integer.toString(encoded[i]);
+		}
+return temp;
+	}
 
 	public void changePixel(int rgb, int x, int y) {
 		img.setRGB(x, y, rgb);
 	}
 
-	public void printVals() { 
-		for (int i = img.getHeight()-10; i < img.getHeight(); i++) {
-
+	public void printVals() {
+		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				System.out.print(getPixel(j, i) + " ");
 			}
@@ -94,18 +102,36 @@ public class PhotoManipulation {
 	}
 	public void encodeCoord(String Key) {
 		String[] splitKey = Key.split(",");
-
+		int temp = splitKey.length;
+		changePixel(temp,0,0);
 		for (int i = 0; i < splitKey.length; i++) {
 			changePixel(Integer.parseInt(splitKey[i]), i, 0);
 		}
 	}
 	public void encodeKey(int[] Key) {
-		
-
+		int temp = Key.length;
+		changePixel(temp,0,img.getHeight()-1);
 		for (int j = 0; j < Key.length; j++) {
 			changePixel(Key[j], j, img.getHeight() - 1);
 		}
 
+	}
+	public int[] decodeKey(){
+		int[] temp = null;
+		int length = img.getRGB(0,img.getHeight()-1);
+		for(int i = 1; i<length+1; i++){
+			temp[i] = img.getRGB(i,img.getHeight()-1);
+		}
+		return temp;
+	}
+	public int[] decodeCoord(){
+		int length = img.getRGB(0,0);
+		int[] temp = new int[length];
+				for(int i = 1; i<length+1; i++){
+					temp[i] = img.getRGB(i,0);
+
+				}
+				return temp;
 	}
 
 	public int getPixel(int x, int y) {

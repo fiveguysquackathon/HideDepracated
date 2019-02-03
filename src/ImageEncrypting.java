@@ -15,7 +15,7 @@ public class ImageEncrypting {
         try
         { 
         	
-            File input_file = new File("./media/1.jpg"); //image file path 
+            File input_file = new File("./media/1.png"); //image file path
   
              // Reading input file 
             image = ImageIO.read(input_file); 
@@ -37,11 +37,12 @@ public class ImageEncrypting {
 	
 	public void writeImage(BufferedImage image) throws IOException {
 		
-		// WRITE IMAGE 
+		// WRITE IMAGE
+
         try
         { 
             // Output file path 
-            File output_file = new File("./media/2.png"); 
+			File output_file = new File("./media/2.png");
   
             // Writing to file taking type and path as 
             ImageIO.write(image, "png", output_file); 
@@ -51,7 +52,7 @@ public class ImageEncrypting {
         catch(IOException e) 
         { 
             System.out.println("Error: "+ e ); 
-        } 
+        }
 	}
 	
 	//---------------------------------------------------------------------------------------------------------------------//
